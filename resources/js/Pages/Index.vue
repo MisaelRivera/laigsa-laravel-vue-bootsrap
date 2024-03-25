@@ -1,6 +1,7 @@
 <script setup>
     import CustomInput from '@/Components/Shared/CustomInput.vue';
     import Modal from '@/Components/Shared/Modal.vue';
+    import EmittingButton from '../Components/EmittingButton.vue';
     import { ref } from 'vue';
     const props = defineProps({
         title: String
@@ -25,6 +26,7 @@
 
     const matchedCities = ref([]);
     const cityInput = ref(null);
+    const input = ref(null);
     const handleSearch = (ev) => {
         const value = ev.target.value;
         const regex = new RegExp('^' + value);
@@ -36,6 +38,10 @@
         element.value = target.innerText;
         matchedCities.value = [];
     };
+
+    const myAction = (needle) => {
+        console.log(needle);    
+    }
 </script>
 <template>
     <h1>{{ title }}</h1>
@@ -86,6 +92,20 @@
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="mb-4">
+                <EmittingButton @text-has-needle="(needle) => myAction(needle)" text="My text"
+                    :element="input"/>
+            </div>
+        </div>
+        <div class="col-3">
+            <input 
+                type="text"
+                ref="input"
+                class="form-control">
         </div>
     </div>
 </template>

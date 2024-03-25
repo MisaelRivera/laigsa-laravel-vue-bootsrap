@@ -3,7 +3,7 @@
         text: String,
         name: String,
     });
-
+    
     const id = props.name.split('_').join('-');
     const input = ref(null),
           matchedItems = ref([]);
@@ -28,10 +28,10 @@
         v-if="matchedItems"
         class="options">
         <li 
-            v-for="(city, index) in matchedItems"
+            v-for="(item, index) in matchedItems"
             @click="(ev) => handleClick(ev, input)"
             :key="index">
-            {{ city }}
+            {{ item }}
         </li>
     </ul>
 </template>
