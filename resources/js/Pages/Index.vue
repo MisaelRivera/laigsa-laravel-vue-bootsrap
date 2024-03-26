@@ -1,7 +1,8 @@
 <script setup>
     import CustomInput from '@/Components/Shared/CustomInput.vue';
     import Modal from '@/Components/Shared/Modal.vue';
-    import EmittingButton from '../Components/EmittingButton.vue';
+    import EmittingButton from '@/Components/EmittingButton.vue';
+    import Autocomplete from '@/Components/Shared/Autocomplete.vue';
     import { ref } from 'vue';
     const props = defineProps({
         title: String
@@ -23,24 +24,11 @@
         'Minieapolis',
         'Tamazula'
     ];
-
-    const matchedCities = ref([]);
-    const cityInput = ref(null);
     const input = ref(null);
-    const handleSearch = (ev) => {
-        const value = ev.target.value;
-        const regex = new RegExp('^' + value);
-        matchedCities.value = cities.filter(city => regex.test(city));
-    }
-
-    const handleClick = (ev, element) => {
-        const target = ev.target;
-        element.value = target.innerText;
-        matchedCities.value = [];
-    };
-
+    const cityName = ref('');
     const myAction = (needle) => {
         console.log(needle);    
+        cityName.value = 'Tama';
     }
 </script>
 <template>
@@ -73,24 +61,11 @@
     <div class="row">
         <div class="col-6 offset-3">
             <div class="mb-4">
-                <label for="city">City</label>
-                <input 
-                    type="text"
+                <Autocomplete 
+                    text="City"
                     name="city"
-                    id="city"
-                    ref="cityInput"
-                    class="form-control"
-                    @input="handleSearch">
-                <ul 
-                    v-if="matchedCities"
-                    class="options">
-                    <li 
-                        v-for="(city, index) in matchedCities"
-                        @click="(ev) => handleClick(ev, cityInput)"
-                        :key="index">
-                        {{ city }}
-                    </li>
-                </ul>
+                    url="/clients"
+                    v-model="cityName"/>
             </div>
         </div>
     </div>
@@ -101,22 +76,14 @@
                     :element="input"/>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <input 
                 type="text"
                 ref="input"
                 class="form-control">
         </div>
+        <div class="col-2">
+            <p>{{ cityName }}</p>
+        </div>
     </div>
 </template>
-<style>
-    .options {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .options li {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid #f1f1f1;
-    }
-</style>

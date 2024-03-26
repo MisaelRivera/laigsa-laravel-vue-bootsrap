@@ -39,7 +39,7 @@
 </script>
 <template>
     <div :class="[...classes, size, offset]">
-        <div :class="['mb-3', labelAlignment]">
+        <div :class="['mb-4', labelAlignment]">
             <label :for="id">
                 {{ text }}
             </label>

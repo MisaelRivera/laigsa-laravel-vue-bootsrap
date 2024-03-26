@@ -15,4 +15,5 @@ use App\Http\Controllers\PagesController;
 
 Route::controller(PagesController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/clients/{query}', 'getClients');
 });
