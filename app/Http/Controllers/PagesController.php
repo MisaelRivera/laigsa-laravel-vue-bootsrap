@@ -16,7 +16,16 @@ class PagesController extends Controller
 
     public function getClients ($query)
     {
-        $clients = Client::where('cliente', 'LIKE', "'%Jacy%'")->get();
+        $clients = Client::where('cliente', 'like', "%$query%")->limit(10)->get();
+        $clients = $clients->map(function ($client) {
+            return $client->cliente;
+        });
+        return response()->json($clients);
+    }
+
+    public function test ()
+    {
+        $clients = Client::where('cliente', 'like', '%agua%')->limit(2)->get();
         return response()->json($clients);
     }
 }

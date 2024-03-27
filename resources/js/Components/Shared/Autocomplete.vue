@@ -8,7 +8,11 @@
             type: Array,
             default: () => []
         },
-        url: String,
+        url: {
+            type: String,
+            default: '',
+        },
+
         value: {
             type: String,
             default: '',
@@ -37,7 +41,7 @@
         await nextTick();
         if (props.modelValue) {
             const regex = new RegExp(`.*${props.modelValue}.*`);
-            if (itemsProps.length) {
+            if (!props.url.length) {
                 matchedItems.value = itemsProps.filter(item => regex.test(item));
             } else {
                 itemsProps = await gettingItems(`${props.url}/${props.modelValue}`);
