@@ -1,5 +1,6 @@
 <script setup>
     import CustomInput from '@/Components/Shared/CustomInput.vue';
+    import GuestLayout from '@/Layouts/GuestLayout.vue';
     import Modal from '@/Components/Shared/Modal.vue';
     import EmittingButton from '@/Components/EmittingButton.vue';
     import Autocomplete from '@/Components/Shared/Autocomplete.vue';
@@ -32,6 +33,9 @@
     }
 </script>
 <template>
+    <GuestLayout>
+
+    </GuestLayout>
     <h1>{{ title }}</h1>
     <div class="row">
         <CustomInput 

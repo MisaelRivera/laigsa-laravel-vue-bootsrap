@@ -1,6 +1,5 @@
 <script setup>
     const props = defineProps({
-        btnText: String,
 
         hasActionButon: {
             type: Boolean,
@@ -32,6 +31,11 @@
             default: () => function () {}
         },
 
+        size: {
+            type: String,
+            default: '',
+        },
+
         target: String,
 
         title: String,
@@ -39,30 +43,17 @@
     });
 </script>
 <template>
-    <!-- Button trigger modal -->
-    <button 
-        type="button" 
-        class="btn btn-primary" 
-        data-bs-toggle="modal" 
-        :data-bs-target="`#${target}`">
-        {{ btnText }}
-    </button>
 
     <!-- Modal -->
     <div 
         class="modal fade" 
         :id="target" 
         tabindex="-1" 
-        aria-labelledby="exampleModalLabel" 
         aria-hidden="true">
-        <div class="modal-dialog">
+        <div :class="['modal-dialog', size]">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 
-                        class="modal-title fs-5" 
-                        id="exampleModalLabel">
-                        {{ title }}
-                    </h1>
+                    <slot name="header"></slot>
                     <button 
                         type="button" 
                         class="btn-close" 
