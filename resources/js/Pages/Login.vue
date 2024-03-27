@@ -4,6 +4,8 @@
     import GuestLayout from '@/Layouts/GuestLayout.vue';
     import CustomInput from '@/Components/Shared/CustomInput.vue';
 
+    defineProps({errors: Object});
+
     const form = reactive({
         email: null,
         password: null,
@@ -36,6 +38,9 @@
                         <button class="btn btn-success">
                             Ingresar
                         </button>
+                        <div 
+                            class="py-2 px-4 rounded-md bg-red-200 text-red-400 mt-1"
+                            v-if="errors.email">{{ errors.email }}</div>
                     </form>
                 </div>
             </div>

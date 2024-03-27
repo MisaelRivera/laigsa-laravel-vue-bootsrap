@@ -17,5 +17,6 @@ Route::controller(PagesController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/clients/{query}', 'getClients');
     Route::get('/login', 'login');
+    Route::post('/login', 'validateUser');
     Route::get('/dashboard', 'Dashboard');
 });

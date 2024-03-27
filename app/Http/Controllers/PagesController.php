@@ -34,7 +34,8 @@ class PagesController extends Controller
             Auth::login($user); // Log in the user
             return redirect('/dashboard');
         } else {
-            return back()->withInput()->withErrors(['email' => 'Email o password invalido']);
+            session()->flash('email', 'Credenciales equivocadas');
+            return back();
         }
     }
 
