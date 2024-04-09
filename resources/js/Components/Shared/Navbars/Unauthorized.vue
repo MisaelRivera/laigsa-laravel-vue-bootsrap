@@ -1,6 +1,52 @@
 <script setup>
     import ModalBtn from '@/Components/Shared/ModalBtn.vue';
     import Modal from '@/Components/Shared/Modal.vue';
+
+    /*
+    =================================================================================================================================
+                                        FUNCIONES DE MODALES
+    =================================================================================================================================
+    */
+
+    const modalsFunctions = {
+        // Abrir modal servicios de aguas
+        openWatersModal: () => {
+            const watersModal = new bootstrap.Modal(document.getElementById('servicios-aguas'));
+            watersModal.show();
+        },
+
+        // Cerrar modal servicios de aguas
+        closeWatersModal: () => {
+            const watersModal = bootstrap.Modal.getInstance(document.getElementById('servicios-aguas'));
+            watersModal.hide();
+        },
+
+        // Abrir modal servicios de alimentos
+        openFoodModal: () => {
+            const foodModal = new bootstrap.Modal(document.getElementById('servicios-alimentos'));
+            foodModal.show();
+        },
+
+        // Cerrar modal servicios de alimentos
+        closeFoodModal: () => {
+            const foodModal = bootstrap.Modal.getInstance(document.getElementById('servicios-alimentos'));
+            foodModal.hide();
+        },
+
+        // Abrir modal servicios de residuos
+        openWasteModal: () => {
+            const wasteModal = new bootstrap.Modal(document.getElementById('servicios-residuos'));
+            wasteModal.show();
+        },
+
+        // Cerrar modal servicios de residuos
+         closeWasteModal: () => {
+            const wasteModal = bootstrap.Modal.getInstance(document.getElementById('servicios-residuos'));
+            wasteModal.hide();
+        },
+    };
+
+
 </script>
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -24,6 +70,7 @@
                             <ModalBtn 
                                 btnText="Análisis de aguas" 
                                 target="servicios-aguas"
+                                :open-function="modalsFunctions.openWatersModal"
                                 :btn-style="false"/>
                         </a>
                     </li>
@@ -32,6 +79,7 @@
                             <ModalBtn 
                                 btnText="Análisis de alimentos" 
                                 target="servicios-alimentos"
+                                :open-function="modalsFunctions.openFoodModal"
                                 :btn-style="false"/>
                         </a>
                     </li>
@@ -40,6 +88,7 @@
                             <ModalBtn 
                                 btnText="Análisis de residuos" 
                                 target="servicios-residuos"
+                                :open-function="modalsFunctions.openWasteModal"
                                 :btn-style="false"/>
                         </a>
                     </li>
@@ -66,7 +115,8 @@
     </nav>
     <Modal 
         target="servicios-aguas"
-        size="modal-lg">
+        size="modal-lg"
+        :close-button-function="modalsFunctions.closeWatersModal">
         <template #header>
             <h4 class="modal-title">Análisis de aguas</h4>
         </template>
@@ -423,7 +473,8 @@
 
 <Modal
     target="servicios-alimentos"
-    size="modal-lg">
+    size="modal-lg"
+    :close-button-function="modalsFunctions.closeFoodModal">
     <template #header>
         <h4 class="modal-title">Análisis de alimentos</h4>
     </template>
@@ -487,7 +538,8 @@
 </Modal>
 <Modal
     target="servicios-residuos"
-    size="modal-lg">
+    size="modal-lg"
+    :close-button-function="modalsFunctions.closeWasteModal">
     <template #header>
         <h4 class="modal-title">Análisis de residuos</h4>
     </template>

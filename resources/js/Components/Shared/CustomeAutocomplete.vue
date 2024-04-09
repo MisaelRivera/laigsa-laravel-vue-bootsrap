@@ -3,48 +3,22 @@
     const emit  = defineEmits(['update:modelValue']); 
     const props = defineProps({
         text: String,
-        
-        labelAlignment: {
-            type: String,
-            default: 'text-left'
-        },
-
-        classes: {
-            type: Array,
-            default: () => []
-        },
-        
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-
-        required: {
-            type: Boolean,
-            default: false,
-        },
-
-        name: {
-            type: String,
-            default: '',    
-        },
-
+        name: String,
         items: {
             type: Array,
             default: () => []
         },
-
-        size: {
-            type: String,
-            default: 'col-md-4',
-        },
-
-        offset: {
+        url: {
             type: String,
             default: '',
         },
 
-        url: {
+        classes: {
+            type: Array,
+            default: []
+        },
+
+        value: {
             type: String,
             default: '',
         },
@@ -114,37 +88,28 @@
     };
 </script>
 <template>
-    <div :class="[size, offset, ...classes]">
-        <div 
-            class="mb-4"
-            :class="[labelAlignment]">
-            <label :for="id">{{ text }}</label>
-            <input 
-                type="text"
-                :name="name"
-                :id="id"
-                class="form-control"
-                @input="handleSearch"
-                @keydown="increaseDecreaseSelected"
-                :placeholder="text"
-                :disabled="disabled"
-                :required="required"
-                :value="modelValue">
-            <ul 
-                v-if="matchedItems"
-                class="options">
-                <li 
-                    v-for="(item, index) in matchedItems"
-                    @click="handleClick"
-                    @mouseenter="selectByHover"
-                    @mouseleave="diselectByLeave"
-                    :class="{selected: index === selected}"
-                    :key="index">
-                    {{ item }}
-                </li>
-            </ul>
-        </div>
-    </div>
+    <input 
+        type="text"
+        :name="name"
+        :id="id"
+        :class="[...classes]"
+        @input="handleSearch"
+        @keydown="increaseDecreaseSelected"
+        :placeholder="text"
+        :value="modelValue">
+    <ul 
+        v-if="matchedItems"
+        class="options">
+        <li 
+            v-for="(item, index) in matchedItems"
+            @click="handleClick"
+            @mouseenter="selectByHover"
+            @mouseleave="diselectByLeave"
+            :class="{selected: index === selected}"
+            :key="index">
+            {{ item }}
+        </li>
+    </ul>
 </template>
 <style>
     .options {

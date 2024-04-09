@@ -1,18 +1,17 @@
 <script setup>
-    import { reactive } from 'vue';
-    import { router } from '@inertiajs/vue3';
+    import { useForm } from '@inertiajs/vue3';
     import GuestLayout from '@/Layouts/GuestLayout.vue';
-    import CustomInput from '@/Components/Shared/CustomInput.vue';
+    import Input from '@/Components/Shared/Input.vue';
 
     defineProps({errors: Object});
 
-    const form = reactive({
+    const form = useForm({
         email: null,
         password: null,
     });
 
     function login () {
-        router.post('/login', form);
+        form.post('/login');
     }
 </script>
 <template>
@@ -23,13 +22,13 @@
                     <h2 class="text-center">Login</h2>
                     <h3 class="text-center subtitle">Introduce tu usuario y contraseña para acceder.</h3>
                     <form @submit.prevent="login">
-                        <CustomInput 
+                        <Input 
                             size="col-md-12"
                             text="Correo"
                             v-model="form.email"
                             name="email"
                             type="email"/>
-                        <CustomInput 
+                        <Input 
                             size="col-md-12"
                             text="Password"
                             v-model="form.password"
@@ -38,9 +37,6 @@
                         <button class="btn btn-success">
                             Ingresar
                         </button>
-                        <div 
-                            class="py-2 px-4 rounded-md bg-red-200 text-red-400 mt-1"
-                            v-if="errors.email">{{ errors.email }}</div>
                     </form>
                 </div>
             </div>

@@ -4,12 +4,6 @@
         modelValue: {
             required: true,
         },
-
-        labelAlignment: {
-            type: String,
-            default: 'text-left'
-        },
-
         classes: {
             type: Array,
             default: () => []
@@ -32,16 +26,6 @@
 
         name: String,
 
-        offset: {
-            type: String,
-            default: '',
-        },
-
-        size: {
-            type: String,
-            default: 'col-md-4',
-        },
-
         step: {
             type: String,
             default: null,
@@ -62,22 +46,16 @@
     };
 </script>
 <template>
-    <div :class="[...classes, size, offset]">
-        <div :class="['mb-4', labelAlignment]">
-            <label :for="id">
-                {{ text }}
-            </label>
-            <input 
-                :type="type"
-                class="form-control"
-                @input="updateValue"
-                :name="name"
-                :step="step"
-                :min="min"
-                :max="max"
-                :id="id"
-                :placeholder="text"
-                :disabled="disabled">
-        </div>
-    </div>
+    <input 
+        :type="type"
+        :class="[...classes]"
+        @input="updateValue"
+        :name="name"
+        :step="step"
+        :min="min"
+        :max="max"
+        :id="id"
+        :value="modelValue"
+        :placeholder="text"
+        :disabled="disabled">
 </template>
