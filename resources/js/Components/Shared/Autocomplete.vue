@@ -62,7 +62,7 @@
 
     const gettingItems = async(url) => {
         const fetchedItems = await fetch(url);
-        const response = fetchedItems.json();
+        const response = await fetchedItems.json();
         return response;
     };
 
@@ -75,9 +75,9 @@
             if (!props.url.length) {
                 matchedItems.value = itemsProps.filter(item => regex.test(item));
             } else {
-                itemsProps = await gettingItems(`${props.url}/${props.modelValue}`);
+                itemsProps = await gettingItems(`${props.url}?search=${props.modelValue}`);
                 console.log(itemsProps);
-                matchedItems.value = itemsProps.filter(item => regex.test(item));
+                matchedItems.value = itemsProps;
             }
         } else {
             matchedItems.value = [];

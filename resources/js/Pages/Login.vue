@@ -11,6 +11,7 @@
     });
 
     function login () {
+        console.log('Here')
         form.post('/login');
     }
 </script>
@@ -27,14 +28,18 @@
                             text="Correo"
                             v-model="form.email"
                             name="email"
-                            type="email"/>
+                            label-text="Email"
+                            :error="form.errors.email"/>
                         <Input 
                             size="col-md-12"
                             text="Password"
                             v-model="form.password"
                             name="password"
-                            type="password"/>
-                        <button class="btn btn-success">
+                            type="password"
+                            label-text="Password"
+                            :error="form.errors.password"/>
+                        <button 
+                            class="btn btn-success">
                             Ingresar
                         </button>
                     </form>

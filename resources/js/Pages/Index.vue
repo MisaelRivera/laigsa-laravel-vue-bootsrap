@@ -1,5 +1,5 @@
 <script setup>
-    import CustomInput from '@/Components/Shared/CustomInput.vue';
+    import CustomeInput from '@/Components/Shared/CustomeInput.vue';
     import GuestLayout from '@/Layouts/GuestLayout.vue';
     import Modal from '@/Components/Shared/Modal.vue';
     import EmittingButton from '@/Components/EmittingButton.vue';
@@ -27,6 +27,7 @@
     ];
     const input = ref(null);
     const cityName = ref('');
+    const name = ref('');
     const myAction = (needle) => {
         console.log(needle);    
         cityName.value = 'Tama';
@@ -38,29 +39,11 @@
     </GuestLayout>
     <h1>{{ title }}</h1>
     <div class="row">
-        <CustomInput 
+        <CustomeInput 
             name="name"
             text="Name"
+            v-model="name"
             offset="offset-md-2"/>
-        <div class="col-md-3">
-            <Modal
-                title="My title"
-                btn-text="Show"
-                target="test">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                    </tr>
-                    <tr>
-                        <td>Misael</td>
-                        <td>30</td>
-                        <td>Male</td>
-                    </tr>
-                </table>
-            </Modal>
-        </div>
     </div>
     <div class="row">
         <div class="col-6 offset-3">

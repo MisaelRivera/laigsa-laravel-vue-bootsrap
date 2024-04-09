@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 /*
@@ -15,8 +16,12 @@ use App\Http\Controllers\PagesController;
 
 Route::controller(PagesController::class)->group(function () {
     Route::get('/', 'index');
-    Route::get('/clients/{query}', 'getClients');
+    Route::get('/clients', 'test');
     Route::get('/login', 'login');
     Route::post('/login', 'validateUser');
     Route::get('/dashboard', 'Dashboard');
+});
+
+Route::controller(OrdersController::class)->group(function () {
+    Route::get('/orders', 'index');
 });

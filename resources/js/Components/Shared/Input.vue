@@ -84,7 +84,7 @@
     <div :class="[...classes, size, offset]">
         <div :class="['mb-4', labelAlignment]">
             <label :for="id">
-                {{ text }}
+                {{ labelText }}
             </label>
             <input 
                 :type="type"
@@ -96,7 +96,7 @@
                 :max="max"
                 :id="id"
                 :value="modelValue"
-                :placeholder="text"
+                :placeholder="placeholder"
                 :disabled="disabled"
                 :required="required">
             <p v-if="error" class="text-danger">{{ error }}</p>
